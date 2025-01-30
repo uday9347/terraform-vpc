@@ -26,6 +26,7 @@ resource "aws_subnet" "snet" {
     vpc_id = aws_vpc.name.id
     cidr_block = var.public_subnet_cidr[count.index]
     availability_zone = local.azs[count.index]
+    map_public_ip_on_launch = true
 
     tags = merge(var.common_tags,var.gateway_tags,{
         Name = "${local.Name}-public- ${local.azs[count.index]}"
